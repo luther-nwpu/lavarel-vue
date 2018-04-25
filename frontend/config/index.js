@@ -20,7 +20,22 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+    proxyTable: {
+      '/api': {
+        target: 'http://localhost:8000', //要跨域访问的API域名
+        rewrite: function(req) {
+          //可以用正則方式替代掉，這樣往後 /api/xxx/xxx 之類的網址，就會自動匹配了
+          req.url = req.url.replace(/^\/api/, '');
+        }
+      },
+      '/user': {
+        target: 'http://localhost:8000', //要跨域访问的API域名
+        rewrite: function(req) {
+          //可以用正則方式替代掉，這樣往後 /api/xxx/xxx 之類的網址，就會自動匹配了
+          req.url = req.url.replace(/^\/user/, '');
+        }
+      }
+    },
     /**
      * Source Maps
      */
