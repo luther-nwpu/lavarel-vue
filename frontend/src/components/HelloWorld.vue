@@ -23,7 +23,18 @@ export default {
   },
   created(){
     console.log(1323)
-    fetch('/user/hello')
+    fetch('/user/hello', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(function(response) {
+      return response.json()
+    }).then(function(result){
+      console.log(result)
+    }).catch(function(err){
+      console.log(err)
+    })
   },
   computed: {...mapGetters(['msg'])},  //对应getters.技术中的msg
   methods: {...mapActions(['fun'])}   //对应 Actions中fun方法

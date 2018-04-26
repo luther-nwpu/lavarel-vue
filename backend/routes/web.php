@@ -16,6 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/user/hello', function() {
-    return 'Hello Welcome';
+    return json_encode(array('success'=>'Hello Welcome'));
 });
 
